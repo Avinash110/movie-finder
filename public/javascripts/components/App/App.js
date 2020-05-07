@@ -5,6 +5,7 @@ const AppStore = require('../../stores/AppStore.js');
 const createReactClass = require('create-react-class');
 
 const SearchForm = require("../Search/Search.js");
+const MovieResults = require("../MovieResults/MovieResults.js");
 
 function getAppState(){
 	return {
@@ -25,6 +26,7 @@ module.exports = createReactClass({
     	return (
 			<div>
     			<SearchForm />
+    			{this.state.movies.length ? <MovieResults movies={this.state.movies}/> : null}
     		</div>
     	)
 	},

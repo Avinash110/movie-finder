@@ -37,6 +37,7 @@ AppDispatcher.register((payload) => {
 			break;
 		case constants.RECEIVE_MOVIE_RESULT:
 			AppStore.setMovieResults(action.movies);
+			AppStore.emit(CHANGE_EVENT);
 			break;
 	}
 	return true;

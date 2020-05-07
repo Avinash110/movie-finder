@@ -12,3 +12,7 @@ body {
 	border-radius: 10px;
 
 }
+
+.thumbnail {
+	width: 100%;
+}

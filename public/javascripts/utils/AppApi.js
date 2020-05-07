@@ -8,7 +8,7 @@ module.exports = {
 			datatype: 'json',
 			cache: 'false',
 			success: (data) => {
-				AppActions.receiveMovieResults(data.Search);
+				AppActions.receiveMovieResults(data && data.Search ? data.Search : []);
 			},
 			error: (xhr, status, error) => {
 				alert(error);
