@@ -1,13 +1,34 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './App.css';
+const React = require('react');
+const ReactDOM = require('react-dom');
+const AppActions = require('../../actions/AppActions.js');
+const AppStore = require('../../stores/AppStore.js');
+const createReactClass = require('create-react-class');
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  render() {
-    return <h2>Welcome to React App</h2>;
-  }
+const SearchForm = require("../Search/Search.js");
+
+function getAppState(){
+	return {
+		movies: AppStore.getMovieResults()
+	}
 }
+module.exports = createReactClass({
+	getInitialState: function(){
+		return getAppState();
+	},
+	componentDidMount: function() {
+		AppStore.addChangeListener(this._onChange);
+	},
+	componentWillUnmount: function(){
+		AppStore.removeChangeListener(this._onChange);
+	},
+	render: function() {
+    	return (
+			<div>
+    			<SearchForm />
+    		</div>
+    	)
+	},
+	_onChange: function(){
+		this.setState(getAppState());
+	}
+});
